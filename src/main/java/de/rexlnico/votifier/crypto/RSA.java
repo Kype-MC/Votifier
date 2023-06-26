@@ -16,19 +16,13 @@
  * along with Votifier.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.vexsoftware.votifier.crypto;
+package de.rexlnico.votifier.crypto;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
 import javax.crypto.Cipher;
 
-/**
- * Static RSA utility methods for encrypting and decrypting blocks of
- * information.
- * 
- * @author Blake Beaupain
- */
 public class RSA {
 
 	/**

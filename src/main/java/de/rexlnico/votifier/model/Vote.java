@@ -16,7 +16,7 @@
  * along with Votifier.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.vexsoftware.votifier.model;
+package de.rexlnico.votifier.model;
 
 /**
  * A model for a vote.

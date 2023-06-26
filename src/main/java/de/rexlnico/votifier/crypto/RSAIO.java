@@ -16,7 +16,7 @@
  * along with Votifier.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.vexsoftware.votifier.crypto;
+package de.rexlnico.votifier.crypto;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,14 +27,8 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 
-import javax.xml.bind.DatatypeConverter;
-
-/**
- * Static utility methods for saving and loading RSA key pairs.
- * 
- * @author Blake Beaupain
- */
 public class RSAIO {
 
 	/**
@@ -55,7 +49,7 @@ public class RSAIO {
 		X509EncodedKeySpec publicSpec = new X509EncodedKeySpec(
 				publicKey.getEncoded());
 		FileOutputStream out = new FileOutputStream(directory + "/public.key");
-		out.write(DatatypeConverter.printBase64Binary(publicSpec.getEncoded())
+		out.write(Base64.getEncoder().encodeToString(publicSpec.getEncoded())
 				.getBytes());
 		out.close();
 
@@ -63,7 +57,7 @@ public class RSAIO {
 		PKCS8EncodedKeySpec privateSpec = new PKCS8EncodedKeySpec(
 				privateKey.getEncoded());
 		out = new FileOutputStream(directory + "/private.key");
-		out.write(DatatypeConverter.printBase64Binary(privateSpec.getEncoded())
+		out.write(Base64.getEncoder().encodeToString(privateSpec.getEncoded())
 				.getBytes());
 		out.close();
 	}
@@ -84,7 +78,7 @@ public class RSAIO {
 		FileInputStream in = new FileInputStream(directory + "/public.key");
 		byte[] encodedPublicKey = new byte[(int) publicKeyFile.length()];
 		in.read(encodedPublicKey);
-		encodedPublicKey = DatatypeConverter.parseBase64Binary(new String(
+		encodedPublicKey = Base64.getDecoder().decode(new String(
 				encodedPublicKey));
 		in.close();
 
@@ -93,7 +87,7 @@ public class RSAIO {
 		in = new FileInputStream(directory + "/private.key");
 		byte[] encodedPrivateKey = new byte[(int) privateKeyFile.length()];
 		in.read(encodedPrivateKey);
-		encodedPrivateKey = DatatypeConverter.parseBase64Binary(new String(
+		encodedPrivateKey = Base64.getDecoder().decode(new String(
 				encodedPrivateKey));
 		in.close();
 
